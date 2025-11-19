@@ -1,5 +1,5 @@
 // Map.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { MapContainer, Popup, TileLayer, useMapEvents, useMap, Marker } from "react-leaflet";
 import CustomMarker from "./custom-marker"; 
 import axios from "axios";

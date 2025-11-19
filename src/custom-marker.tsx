@@ -5,7 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerUrl from "../src/assets/mapMarker.svg";
 import redMarkerUrl from "../src/assets/redMapMarker.svg";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { Marker } from "react-leaflet";
 
 interface CustomMarkerProps {
   position: L.LatLngExpression;
@@ -13,7 +13,6 @@ interface CustomMarkerProps {
 }
 
 const CustomMarker: React.FC<CustomMarkerProps> = ({ position, children }) => {
-  const map = useMap();
 
   const customIcon = L.icon({
     iconUrl: MarkerUrl,
@@ -29,7 +28,6 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ position, children }) => {
 };
 
 const RedCustomMarker: React.FC<CustomMarkerProps> = ({ position, children }) => {
-  const map = useMap();
   const redCustomIcon = L.icon({
     iconUrl: redMarkerUrl,
     iconSize: [40, 40],
