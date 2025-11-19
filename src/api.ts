@@ -20,21 +20,16 @@ export const fetchAnyPOI = async (lat: number, lng: number, radius: number = 500
   const server = CONFIG.OVERPASS_SERVERS[Math.floor(Math.random() * CONFIG.OVERPASS_SERVERS.length)];
 
   const query = `
-    [out:json][timeout:25];
-    (
-      nwr(around:${radius},${lat},${lng})["amenity"];  
-      nwr(around:${radius},${lat},${lng})["shop"];
-      nwr(around:${radius},${lat},${lng})["tourism"];
-      nwr(around:${radius},${lat},${lng})["leisure"];
-      nwr(around:${radius},${lat},${lng})["historic"];
-    );
+    [out:json][timeout:30];
+    nwr(around:${radius},${lat},${lng})
+       [~"^(amenity|shop|tourism|leisure|historic)$"~"."];
     out center ${limit};
   `;
 
   try {
     console.log("Đang gọi Overpass...");
     const response = await axios.post(server, `data=${encodeURIComponent(query)}`, {
-      headers: { "Content-Type": "application/x-www-form-urlencoded" }, signal: signal
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, timeout : 30000, signal: signal
     });
 
     return response.data.elements as IPOI[];

@@ -45,8 +45,8 @@ export default function Map() {
     const timeoutId = setTimeout(() => {
         controller.abort();
         setLoading(false);
-        setMessage({ text: "Quá thời gian chờ (15s). Các APIs tìm POI hoặc tìm địa điểm chính chưa phản hồi!", type: 'error' });
-    }, 15000);
+        setMessage({ text: "Quá thời gian chờ (20s). Các APIs tìm POI hoặc tìm địa điểm chính chưa phản hồi!", type: 'error' });
+    }, 20000);
     try {
       const { data } = await axios.get(`${CONFIG.NOMINATIM_BASE_URL}/search`, {
         params: {
